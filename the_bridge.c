@@ -4,7 +4,7 @@ int main(int argc, char **argv) {
     int N, D;
     int length;
     
-    if ( argc != 2 ) {
+    if ( argc != 3 ) {
         printf("Error: please provide 2 command line parameters\n");
         return 1;
     }
