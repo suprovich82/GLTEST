@@ -4,6 +4,11 @@ int main(int argc, char **argv) {
     int N, D;
     int length;
     
+    if ( argc != 2 ) {
+        printf("Error: please provide 2 command line parameters\n");
+        return 1;
+    }
+    
     sscanf(argv[1], "%d", &N);
     sscanf(argv[2], "%d", &D);
     
