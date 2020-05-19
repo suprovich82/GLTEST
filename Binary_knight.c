@@ -19,13 +19,21 @@ int main(int argc, char **argv) {
     sscanf(argv[1], "%s", &path);
     
     dir = opendir(path);
-    
-    chdir(path);
 
     while ( (entry = readdir(dir)) != NULL) {    
-   
-        stat(entry->d_name, &buf);
+        if ( entry->d_name == "." ) {
+            chdir(path);
+            getcwd(filepath, 250);
+        } else if ( entry->d_name == ".." ) {
+            chdir(path);
+            chdir("..");
+            getcwd(filepath, 250);
+        } else {
+            snprintf(filepath, sizeof filepath, "%s/%s", path, entry->d_name);
+            printf("%s\n", filepath);
+        }
         
+        stat(filepath, &buf);
         printf("%s %d %s %s %d %s %s\n", 
             buf.st_mode, buf.st_nlink, buf.st_uid, buf.st_gid, buf.st_size, buf.st_mtim, entry->d_name);
     };
