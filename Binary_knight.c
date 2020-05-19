@@ -2,6 +2,7 @@
 #include <sys/types.h>
 #include <dirent.h>
 #include <sys/stat.h>
+#include <unistd.h>
 
 int main(int argc, char **argv) {
     char path[250]; // 256 is a limitation of command length in shell
