@@ -3,13 +3,21 @@
 #include <dirent.h>
 #include <sys/stat.h>
 #include <unistd.h>
+#include <string.h>
+#include <bsd/string.h>
+#include <pwd.h>
+#include <grp.h>
+#include <time.h>
 
 int main(int argc, char **argv) {
-    char path[250]; // 256 is a limitation of command length in shell
-    char filepath[250];
+    char path[100]; 
+    char mode[12];
+    char mtime[20];
     DIR *dir;
     struct dirent *entry;
     struct stat buf;
+    struct passwd *uid;
+    struct group *gid;
     
     
     if ( argc != 2 ) {
@@ -20,23 +28,19 @@ int main(int argc, char **argv) {
     sscanf(argv[1], "%s", &path);
     
     dir = opendir(path);
-
-    while ( (entry = readdir(dir)) != NULL) {    
-        if ( entry->d_name == "." ) {
-            chdir(path);
-            getcwd(filepath, 250);
-        } else if ( entry->d_name == ".." ) {
-            chdir(path);
-            chdir("..");
-            getcwd(filepath, 250);
-        } else {
-            snprintf(filepath, sizeof filepath, "%s/%s", path, entry->d_name);
-            printf("%s\n", filepath);
-        }
+    chdir(path);
+    
+    while ( (entry = readdir(dir)) != NULL) {
+            
+        stat(entry->d_name, &buf); 
+        strmode(buf.st_mode,mode);
         
-        stat(filepath, &buf);
-        printf("%s %d %s %s %d %s %s\n", 
-            buf.st_mode, buf.st_nlink, buf.st_uid, buf.st_gid, buf.st_size, buf.st_mtim, entry->d_name);
+        uid = getpwuid(buf.st_uid);
+        gid = getgrgid(buf.st_gid);
+        
+        strftime(mtime, sizeof mtime, "%b %d %H:%M", localtime(&buf.st_mtime));
+
+        printf("%s\t%d\t%s\t%s\t%d\t%s\t%s\n", mode, buf.st_nlink, uid->pw_name, gid->gr_name, buf.st_size, mtime, entry->d_name);
     };
 
     closedir(dir);
