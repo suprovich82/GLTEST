@@ -11,13 +11,15 @@ sudo yum install  libbsd-devel
 
 
 
-Install RHEL EPEL Repos
+1. Install RHEL EPEL Repos
 
 wget http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+
 wget http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
+
 sudo rpm -Uvh remi-release-6*.rpm epel-release-6*.rpm
 
-Yum for libbsd-devel
+2. Yum for libbsd-devel
 
 yum install libbsd-devel
 
