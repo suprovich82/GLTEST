@@ -21,8 +21,7 @@ int main(int argc, char **argv) {
     }
     
     K += 1; //The "K" parameter is the number of steps that the Giant skips by taking a step. 
-            // Become the next "K + 1". 
-            // Also, when there are no options to take a given step, but there are steps, he takes a step for each future.
+            //He will step on "K + 1" stair. 
      
     if ( N % K == 0 ) {
         steps = N/K;
