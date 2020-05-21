@@ -20,17 +20,13 @@ int main(int argc, char **argv) {
         return 0;
     }
     
-    K += 1; // ступень куда может стать великан  
-    
+    K += 1;
+     
     if ( N % K == 0 ) {
-        // printf("test %d\n", N%K);
         steps = N/K;
         printf("%d\n", steps);
     } else {
-        // printf("test2 \n");
         mod = N % K;
-        // printf("mod = %d\n", mod);
-        // printf("N/K = %d\n", N/K);
         
         steps = (N / K) + mod;
         printf("%d\n", steps);
