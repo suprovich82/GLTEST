@@ -6,7 +6,7 @@ Task 1. Stairway.c
 
     Where N - number of stairs in stairway, K - number of stairs that Giant will skips by taking a step.
 
-    The "K" parameter is the number of steps that the Giant skips by taking a step. Become the next "K + 1". 
+    The "K" parameter is the number of steps that the Giant skips by taking a step. He will step on "K + 1" stair.  
 
 -------------------
 Task 2. Bridge.c
