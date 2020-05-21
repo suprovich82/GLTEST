@@ -20,14 +20,15 @@ int main(int argc, char **argv) {
         return 0;
     }
     
-    K += 1;
+    K += 1; //The "K" parameter is the number of steps that the Giant skips by taking a step. 
+            // Become the next "K + 1". 
+            // Also, when there are no options to take a given step, but there are steps, he takes a step for each future.
      
     if ( N % K == 0 ) {
         steps = N/K;
         printf("%d\n", steps);
     } else {
         mod = N % K;
-        
         steps = (N / K) + mod;
         printf("%d\n", steps);
     }
