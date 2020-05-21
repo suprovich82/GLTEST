@@ -1,30 +1,46 @@
 # GLTEST
+------------------
+Task 1. Stairway.c
+------------------
+    ./Stairway N K
 
-You need to install libbsd-dev
+    Where N - number of stairs in stairway, K - number of stairs that Giant will skips by taking a step.
+
+    The "K" parameter is the number of steps that the Giant skips by taking a step. He will step on "K + 1" stair.  
+
+-------------------
+Task 2. Bridge.c
+-------------------
+    ./bridge N D
+
+    Where N - the total number of spans the Magical Bridge has, D - the distance between the spans.
+    
+-------------------
+Task 3. list.c
+-------------------
+
+    ./list -la <path_to_folder>
+
+Requirements:
+
+1. You need to install libbsd-dev
 
 if you are using ubuntu
 
-sudo apt-get install  libbsd-dev
+    sudo apt-get install  libbsd-dev
+
 if you are using centOS
 
-sudo yum install  libbsd-devel
+    sudo yum install  libbsd-devel
 
+if you are using Amazon Linux 2
 
+    wget http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+    wget http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
+    sudo rpm -Uvh remi-release-6*.rpm epel-release-6*.rpm
+    yum install libbsd-devel
 
-1. Install RHEL EPEL Repos
+2. Use -lbsd option to compile
 
-wget http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
-
-wget http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
-
-sudo rpm -Uvh remi-release-6*.rpm epel-release-6*.rpm
-
-2. Yum for libbsd-devel
-
-yum install libbsd-devel
-
-Reference: Installing RHEL EPEL Repo on Centos 5.x or 6.x, pkgs.org
-
-
-Use -lbsd option to compile
-gcc Binary_knight.c -o Binary_knight -lbsd
+    gcc list.c -o list -lbsd
+    
