@@ -24,11 +24,10 @@ int main(int argc, char **argv) {
             //He will step on "K + 1" stair. 
      
     if ( N % K == 0 ) {
-        steps = N/K;
+        steps = N / K;
         printf("%d\n", steps);
     } else {
-        mod = N % K;
-        steps = (N / K) + mod;
+        steps = (N / K) + 1;
         printf("%d\n", steps);
     }
     
