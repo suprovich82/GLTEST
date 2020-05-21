@@ -13,6 +13,7 @@ int main(int argc, char **argv) {
     char path[100]; 
     char mode[12];
     char mtime[20];
+    char opts[20];
     DIR *dir;
     struct dirent *entry;
     struct stat buf;
@@ -20,12 +21,18 @@ int main(int argc, char **argv) {
     struct group *gid;
     
     
-    if ( argc != 2 ) {
-        printf("Error: please provide 1 command line parameters\n");
+    if ( argc != 3 ) {
+        printf("Error: please provide 2 command line parameters\n");
         return 1;
     }
     
-    sscanf(argv[1], "%s", &path);
+    sscanf(argv[1], "%s", &opts);
+    sscanf(argv[2], "%s", &path);
+    
+    if ( strcmp ( opts, "-la") != 0 ){
+        printf("Error: option '%s' is not supported\n", opts);
+        return 1;
+    }
     
     dir = opendir(path);
     chdir(path);
